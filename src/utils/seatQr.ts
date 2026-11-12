@@ -25,14 +25,17 @@ export const SCREEN_NAMES = SCREENS.map((s) => s.name);
 export const SEAT_ROWS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 export const SEAT_NUMBERS = Array.from({ length: 14 }, (_, i) => i + 1);
 
+/** Live production site that printed seat QR codes open. */
+export const PRODUCTION_SITE_URL = 'https://adairatheater.vercel.app';
+
 /**
- * Base URL that seat QR codes point to.
- * Set VITE_PUBLIC_SITE_URL (e.g. in Vercel project settings) to force a
- * specific domain; otherwise the address the admin page is opened on is used.
+ * Base URL that seat QR codes point to. Always the production site, so codes
+ * made from localhost or a Vercel preview still work when printed.
+ * Set VITE_PUBLIC_SITE_URL (e.g. for a custom domain) to override.
  */
 export const getPublicSiteUrl = (): string => {
   const configured = (import.meta.env.VITE_PUBLIC_SITE_URL as string | undefined)?.trim();
-  return (configured || window.location.origin).replace(/\/+$/, '');
+  return (configured || PRODUCTION_SITE_URL).replace(/\/+$/, '');
 };
 
 /** True when QR codes would point at an address phones can't reach. */
