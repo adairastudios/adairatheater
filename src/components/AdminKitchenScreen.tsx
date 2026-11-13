@@ -215,7 +215,8 @@ export const AdminKitchenScreen: React.FC = () => {
   };
 
   return (
-    <div className="pb-28 max-w-7xl mx-auto px-3 sm:px-6">
+    <div className="dark min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] bg-[#07090F] text-white">
+    <div className="pb-36 md:pb-28 max-w-7xl mx-auto px-3 sm:px-6">
       {/* KDS Header & Sub-Bar */}
       <div className="py-3 sm:py-4 border-b border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
         <div className="flex items-center gap-2.5 sm:gap-3">
@@ -850,6 +851,7 @@ export const AdminKitchenScreen: React.FC = () => {
           </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

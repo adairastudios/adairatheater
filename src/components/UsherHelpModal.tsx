@@ -4,10 +4,10 @@ import { X, Bell, Droplets, Utensils, HelpCircle, Check, MessageSquare } from 'l
 import { motion, AnimatePresence } from 'motion/react';
 
 const ASSISTANCE_OPTIONS = [
-  { id: 'water', label: 'Still Water Glass', icon: <Droplets className="w-4 h-4 text-sky-400" /> },
-  { id: 'napkins', label: 'Extra Napkins & Wipes', icon: <Utensils className="w-4 h-4 text-emerald-400" /> },
-  { id: 'cutlery', label: 'Cutlery & Straws', icon: <Utensils className="w-4 h-4 text-amber-400" /> },
-  { id: 'usher', label: 'Summon Floor Usher', icon: <Bell className="w-4 h-4 text-[#D9F20A]" /> },
+  { id: 'water', label: 'Still Water Glass', icon: <Droplets className="w-4 h-4 text-sky-600" /> },
+  { id: 'napkins', label: 'Extra Napkins & Wipes', icon: <Utensils className="w-4 h-4 text-emerald-600" /> },
+  { id: 'cutlery', label: 'Cutlery & Straws', icon: <Utensils className="w-4 h-4 text-amber-600" /> },
+  { id: 'usher', label: 'Summon Floor Usher', icon: <Bell className="w-4 h-4 text-lime-deep" /> },
 ];
 
 export const UsherHelpModal: React.FC = () => {
@@ -45,7 +45,7 @@ export const UsherHelpModal: React.FC = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={() => setIsUsherModalOpen(false)}
-          className="fixed inset-0 bg-black/80 backdrop-blur-md"
+          className="fixed inset-0 bg-black/35 backdrop-blur-sm"
         />
 
         {/* Modal Box */}
@@ -53,25 +53,25 @@ export const UsherHelpModal: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
-          className="relative w-full max-w-md glass-panel-elevated rounded-2xl sm:rounded-3xl border border-white/20 p-4 sm:p-6 z-10 shadow-2xl"
+          className="relative w-full max-w-md bg-white card-raised rounded-2xl sm:rounded-3xl border border-line p-4 sm:p-6 z-10 shadow-2xl"
         >
           {/* Header */}
-          <div className="flex items-center justify-between pb-2.5 sm:pb-3 border-b border-white/10">
+          <div className="flex items-center justify-between pb-2.5 sm:pb-3 border-b border-line">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-[#D9F20A]/15 border border-[#D9F20A]/30 flex items-center justify-center text-[#D9F20A]">
+              <div className="w-9 h-9 rounded-xl bg-lime/30 border border-lime-deep/20 flex items-center justify-center text-lime-deep">
                 <Bell className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[10px] tracking-[0.2em] text-[#8DBBDA] uppercase font-bold">
+                <span className="text-[10px] tracking-[0.2em] text-sky-deep uppercase font-bold">
                   In-Theatre Support
                 </span>
-                <h3 className="text-lg font-serif font-bold text-white">Call Theatre Usher</h3>
+                <h3 className="text-lg font-serif font-bold text-ink">Call Theatre Usher</h3>
               </div>
             </div>
 
             <button
               onClick={() => setIsUsherModalOpen(false)}
-              className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/60 hover:text-white"
+              className="w-8 h-8 rounded-full bg-[#F5F5F5] hover:bg-black/5 flex items-center justify-center text-muted hover:text-ink"
             >
               <X className="w-4 h-4" />
             </button>
@@ -82,15 +82,15 @@ export const UsherHelpModal: React.FC = () => {
               <div className="w-14 h-14 rounded-full bg-[#D9F20A] text-black flex items-center justify-center mx-auto shadow-lg shadow-[#D9F20A]/30">
                 <Check className="w-7 h-7 stroke-[2.5]" />
               </div>
-              <h4 className="font-bold text-base text-white">Usher Alerted</h4>
-              <p className="text-xs text-white/60">
+              <h4 className="font-bold text-base text-ink">Usher Alerted</h4>
+              <p className="text-xs text-muted">
                 Staff has received your request for {screen} · Seat {seat}. An usher is on the way.
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="py-4 space-y-4">
-              <p className="text-xs text-white/70">
-                Need anything during the screening? Select an option below and floor staff will arrive discreetly at <strong className="text-white">{screen} · Seat {seat}</strong>.
+              <p className="text-xs text-ink-soft">
+                Need anything during the screening? Select an option below and floor staff will arrive discreetly at <strong className="text-ink">{screen} · Seat {seat}</strong>.
               </p>
 
               <div className="grid grid-cols-2 gap-2">
@@ -101,8 +101,8 @@ export const UsherHelpModal: React.FC = () => {
                     onClick={() => setSelectedType(opt.id)}
                     className={`p-3 rounded-2xl border text-left flex items-center gap-2.5 transition-all min-h-[44px] ${
                       selectedType === opt.id
-                        ? 'bg-white/15 border-[#D9F20A] text-white shadow-sm glow-lime-inner'
-                        : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10'
+                        ? 'bg-lime-soft border-lime-strong text-ink'
+                        : 'bg-[#F5F5F5] border-line text-ink-soft hover:bg-black/5'
                     }`}
                   >
                     {opt.icon}
@@ -112,7 +112,7 @@ export const UsherHelpModal: React.FC = () => {
               </div>
 
               <div>
-                <label htmlFor="usher-note-input" className="text-xs font-bold uppercase tracking-wider text-white/60 mb-1 block">
+                <label htmlFor="usher-note-input" className="text-xs font-bold uppercase tracking-wider text-muted mb-1 block">
                   Optional Note
                 </label>
                 <input
@@ -121,7 +121,7 @@ export const UsherHelpModal: React.FC = () => {
                   placeholder="e.g. Please bring extra ice, spill assistance"
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-white/5 border border-white/15 text-white text-xs placeholder:text-white/40 focus:outline-none focus:border-[#D9F20A]"
+                  className="w-full px-3 py-2 rounded-xl bg-[#F5F5F5] border border-line text-ink text-xs placeholder:text-faint focus:outline-none focus:border-ink/40"
                 />
               </div>
 

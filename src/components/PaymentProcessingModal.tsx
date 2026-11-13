@@ -77,7 +77,7 @@ export const PaymentProcessingModal: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/90 backdrop-blur-xl"
+          className="fixed inset-0 bg-black/35 backdrop-blur-sm"
         />
 
         {/* Modal Box */}
@@ -85,15 +85,15 @@ export const PaymentProcessingModal: React.FC = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.9 }}
-          className="relative w-full max-w-sm glass-panel-elevated rounded-2xl sm:rounded-3xl border border-white/20 p-5 sm:p-8 text-center z-10 shadow-2xl"
+          className="relative w-full max-w-sm bg-white card-raised rounded-2xl sm:rounded-3xl border border-line p-5 sm:p-8 text-center z-10 shadow-2xl"
         >
           {/* Animated Spinner / Checkmark */}
           <div className="relative w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 sm:mb-6 flex items-center justify-center">
             {step < 4 && !hasError && (
               <>
-                <div className="absolute inset-0 rounded-full border-2 border-white/10" />
-                <div className="absolute inset-0 rounded-full border-2 border-[#D9F20A] border-t-transparent animate-spin" />
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-[#D9F20A]/15 flex items-center justify-center text-[#D9F20A]">
+                <div className="absolute inset-0 rounded-full border-2 border-line" />
+                <div className="absolute inset-0 rounded-full border-2 border-lime-strong border-t-transparent animate-spin" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-lime/30 flex items-center justify-center text-lime-deep">
                   <Armchair className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
                 </div>
               </>
@@ -110,14 +110,14 @@ export const PaymentProcessingModal: React.FC = () => {
             )}
 
             {hasError && (
-              <div className="w-20 h-20 rounded-full bg-rose-500/20 border border-rose-500 flex items-center justify-center text-rose-400">
+              <div className="w-20 h-20 rounded-full bg-rose-50 border border-rose-500 flex items-center justify-center text-rose-600">
                 <AlertTriangle className="w-10 h-10" />
               </div>
             )}
           </div>
 
           {/* Status Message */}
-          <h3 className="font-serif font-bold text-xl text-white">
+          <h3 className="font-serif font-bold text-xl text-ink">
             {hasError
               ? 'Payment Declined'
               : step === 1
@@ -129,7 +129,7 @@ export const PaymentProcessingModal: React.FC = () => {
               : 'Payment Successful!'}
           </h3>
 
-          <p className="text-xs text-white/60 mt-2">
+          <p className="text-xs text-muted mt-2">
             {hasError
               ? 'Your bank was unable to authorize this transaction. Please try another card or UPI.'
               : step === 4
@@ -148,7 +148,7 @@ export const PaymentProcessingModal: React.FC = () => {
                       ? 'w-6 bg-[#D9F20A]'
                       : i === step
                       ? 'w-8 bg-[#8DBBDA] animate-pulse'
-                      : 'w-2 bg-white/20'
+                      : 'w-2 bg-[#E9E9EC]'
                   }`}
                 />
               ))}
@@ -156,12 +156,12 @@ export const PaymentProcessingModal: React.FC = () => {
           )}
 
           {/* Test failure simulation option for reviewers */}
-          <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-center gap-2">
+          <div className="mt-6 pt-4 border-t border-line flex items-center justify-center gap-2">
             {!hasError ? (
               <button
                 type="button"
                 onClick={() => setHasError(true)}
-                className="text-[10px] text-white/40 hover:text-rose-400 transition-colors"
+                className="text-[10px] text-faint hover:text-rose-600 transition-colors"
               >
                 (Test Failure State)
               </button>
@@ -172,7 +172,7 @@ export const PaymentProcessingModal: React.FC = () => {
                   setHasError(false);
                   setStep(1);
                 }}
-                className="px-4 py-2 rounded-xl bg-white/10 text-white text-xs font-semibold flex items-center gap-1.5"
+                className="px-4 py-2 rounded-xl bg-[#F1F1F3] text-ink text-xs font-semibold flex items-center gap-1.5"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 <span>Retry Payment</span>

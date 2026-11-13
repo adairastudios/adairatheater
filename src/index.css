@@ -2,20 +2,35 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --color-smoke: #F5F5F5;
+  --color-ink: #121316;
+  --color-ink-soft: #3A3D44;
+  --color-muted: #6E727A;
+  --color-faint: #A3A7AE;
+  --color-line: #E7E7E9;
+  --color-lime: #D9F20A;
+  --color-lime-deep: #5C6A00;
+  --color-lime-strong: #B4CB00;
+  --color-lime-soft: #F2F9C8;
+  --color-sky-soft: #E4F0F8;
+  --color-sand-soft: #F7F0E6;
+  --color-sky: #8DBBDA;
+  --color-sky-deep: #2F6A92;
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 @layer base {
   :root {
     --font-display: 'Playfair Display', Georgia, serif;
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --color-lime: #D9F20A;
-    --color-sky: #8DBBDA;
-    --color-bg-dark: #07090F;
-    --color-bg-navy: #0D1220;
+    color-scheme: light;
   }
 
   body {
     font-family: var(--font-sans);
-    background-color: var(--color-bg-dark);
-    color: #ffffff;
+    background-color: #F5F5F5;
+    color: #121316;
     overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
   }
@@ -25,60 +40,62 @@
   }
 }
 
-/* Glassmorphism custom classes with CSS fallback */
+/* Light surfaces */
+.card {
+  background-color: #FFFFFF;
+  border: 1px solid #ECECEE;
+  box-shadow: 0 1px 2px rgba(18, 19, 22, 0.04), 0 6px 20px -10px rgba(18, 19, 22, 0.10);
+}
+
+.card-raised {
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(18, 19, 22, 0.05), 0 24px 60px -20px rgba(18, 19, 22, 0.25);
+}
+
+.frosted {
+  background-color: rgba(245, 245, 245, 0.86);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+}
+
+.frosted-white {
+  background-color: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+}
+
+/* Floating glass capsule (bottom tab bar) */
+.glass-capsule {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0.62) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(18, 19, 22, 0.04),
+    0 1px 2px rgba(18, 19, 22, 0.06),
+    0 18px 40px -14px rgba(18, 19, 22, 0.28);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+}
+
+/* Legacy dark utilities (kept for the kitchen KDS screen) */
 .glass-panel {
   background-color: rgba(13, 18, 32, 0.88);
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
 }
-
-@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .glass-panel {
-    background-color: rgba(255, 255, 255, 0.07);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    backdrop-filter: blur(20px) saturate(140%);
-  }
-}
-
 .glass-panel-elevated {
-  background-color: rgba(13, 18, 32, 0.94);
+  background-color: rgba(20, 26, 40, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.65), 0 0 20px 0 rgba(217, 242, 10, 0.08);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.65);
 }
-
-@supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .glass-panel-elevated {
-    background-color: rgba(255, 255, 255, 0.11);
-    -webkit-backdrop-filter: blur(24px) saturate(150%);
-    backdrop-filter: blur(24px) saturate(150%);
-  }
-}
-
 .glass-pill {
   background-color: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
 }
-
-/* Neon glow utilities */
-.glow-lime {
-  box-shadow: 0 0 24px -2px rgba(217, 242, 10, 0.45);
-}
-
-.glow-lime-sm {
-  box-shadow: 0 0 12px rgba(217, 242, 10, 0.35);
-}
-
-.glow-lime-inner {
-  box-shadow: inset 0 0 12px rgba(217, 242, 10, 0.2);
-}
-
-.glow-sky {
-  box-shadow: 0 0 20px -2px rgba(141, 187, 218, 0.35);
-}
-
-/* Neon glow utilities */
+.glow-lime { box-shadow: 0 10px 28px -10px rgba(160, 180, 0, 0.55); }
+.glow-lime-sm { box-shadow: 0 0 12px rgba(217, 242, 10, 0.35); }
+.glow-lime-inner { box-shadow: inset 0 0 12px rgba(217, 242, 10, 0.2); }
+.glow-sky { box-shadow: 0 0 20px -2px rgba(141, 187, 218, 0.35); }
 
 /* Hide scrollbars but keep functionality */
 .no-scrollbar::-webkit-scrollbar {
@@ -87,4 +104,17 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Subtle shimmer for the intro wordmark */
+@keyframes sheen {
+  0% { transform: translateX(-120%) skewX(-18deg); }
+  100% { transform: translateX(220%) skewX(-18deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

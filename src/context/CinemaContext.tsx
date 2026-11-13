@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
-import { MenuItem, CartItem, Order, OrderStatus } from '../types';
+import { MenuItem, CartItem, Order, OrderStatus, Category } from '../types';
 import { INITIAL_MENU_ITEMS } from '../data/seedMenu';
 import { GST_RATE, DELIVERY_FEE, FREE_DELIVERY_THRESHOLD } from '../utils/currency';
 import { parseScreenParam } from '../utils/seatQr';
@@ -75,6 +75,15 @@ interface CinemaContextType {
   isUsherModalOpen: boolean;
   setIsUsherModalOpen: (open: boolean) => void;
 
+  // Product detail popup & menu category preset
+  selectedProduct: MenuItem | null;
+  openProduct: (item: MenuItem | null) => void;
+  menuCategory: Category | 'All';
+  setMenuCategory: (cat: Category | 'All') => void;
+
+  // Bars hide while scrolling down, reveal on scroll up
+  navHidden: boolean;
+
   // Theme
   isDark: boolean;
   toggleTheme: () => void;
@@ -99,8 +108,42 @@ export const CinemaProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   // 2. Navigation View: detect if /admin is in URL or hash
   const [currentView, setCurrentView] = useState<'welcome' | 'menu' | 'tracking' | 'admin'>('welcome');
 
-  // 3. Theme (Permanent cinematic dark mode)
-  const isDark = true;
+  // Product popup + category preset (for quick-jump from home)
+  const [selectedProduct, setSelectedProduct] = useState<MenuItem | null>(null);
+  const [menuCategory, setMenuCategory] = useState<Category | 'All'>('All');
+  const openProduct = useCallback((item: MenuItem | null) => setSelectedProduct(item), []);
+
+  // Hide-on-scroll for the top bar and bottom tab bar
+  const [navHidden, setNavHidden] = useState(false);
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+    const update = () => {
+      const y = window.scrollY;
+      const delta = y - lastY;
+      if (y < 72) setNavHidden(false);
+      else if (delta > 8) setNavHidden(true);
+      else if (delta < -8) setNavHidden(false);
+      if (Math.abs(delta) > 8 || y < 72) lastY = y;
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Always show the bars again when switching views
+  useEffect(() => {
+    setNavHidden(false);
+  }, [currentView]);
+
+  // 3. Theme (light white-smoke UI)
+  const isDark = false;
   const toggleTheme = useCallback(() => {}, []);
 
   // 4. Cart Sheet & Checkout Modals
@@ -265,9 +308,9 @@ export const CinemaProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     return () => window.removeEventListener('popstate', parseUrl);
   }, []);
 
-  // Permanent dark mode class on <html>
+  // Light UI: make sure no stale dark class lingers on <html>
   useEffect(() => {
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('dark');
   }, []);
 
   // Save Cart to LocalStorage
@@ -535,6 +578,11 @@ export const CinemaProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         resolveUsherRequest,
         isUsherModalOpen,
         setIsUsherModalOpen,
+        navHidden,
+        selectedProduct,
+        openProduct,
+        menuCategory,
+        setMenuCategory,
         isDark,
         toggleTheme,
       }}

@@ -4,34 +4,37 @@ import { DietaryType } from '../types';
 interface DietaryBadgeProps {
   type: DietaryType;
   showText?: boolean;
+  /** Pixel size of the square mark. */
+  size?: number;
 }
 
-export const DietaryBadge: React.FC<DietaryBadgeProps> = ({ type, showText = false }) => {
+const VEG = '#0F8A3B';
+const NON_VEG = '#C8372D';
+
+/**
+ * Standard Indian food mark: a square outline with a filled circle (veg)
+ * or a filled triangle (non-veg). Drawn as SVG so it stays crisp at any size.
+ */
+export const DietaryBadge: React.FC<DietaryBadgeProps> = ({ type, showText = false, size = 16 }) => {
   const isVeg = type === 'veg';
+  const color = isVeg ? VEG : NON_VEG;
+  const label = isVeg ? 'Vegetarian' : 'Non-vegetarian';
 
   return (
-    <div className="inline-flex items-center gap-1.5" title={isVeg ? 'Vegetarian' : 'Non-Vegetarian'}>
-      {/* Official cinema culinary standard square with dot/triangle */}
-      <div
-        className={`w-4 h-4 rounded-[3px] border flex items-center justify-center shrink-0 ${
-          isVeg
-            ? 'border-emerald-500 bg-emerald-950/40'
-            : 'border-rose-500 bg-rose-950/40'
-        }`}
-        aria-label={isVeg ? 'Vegetarian' : 'Non-Vegetarian'}
-      >
+    <span className="inline-flex items-center gap-1.5 shrink-0" title={label}>
+      <svg width={size} height={size} viewBox="0 0 16 16" role="img" aria-label={label} className="block shrink-0">
+        <rect x="0.75" y="0.75" width="14.5" height="14.5" rx="3" fill="#FFFFFF" stroke={color} strokeWidth="1.5" />
         {isVeg ? (
-          <div className="w-2 h-2 rounded-full bg-emerald-400" />
+          <circle cx="8" cy="8" r="3.75" fill={color} />
         ) : (
-          <div className="w-0 h-0 border-l-[3.5px] border-l-transparent border-r-[3.5px] border-r-transparent border-b-[6px] border-b-rose-400" />
+          <path d="M8 3.9 L12.1 11.2 H3.9 Z" fill={color} stroke={color} strokeWidth="0.9" strokeLinejoin="round" />
         )}
-      </div>
-
+      </svg>
       {showText && (
-        <span className={`text-[11px] font-semibold tracking-wide ${isVeg ? 'text-emerald-400' : 'text-rose-400'}`}>
-          {isVeg ? 'Pure Veg' : 'Non-Veg'}
+        <span className="text-[11px] font-semibold" style={{ color }}>
+          {isVeg ? 'Veg' : 'Non-veg'}
         </span>
       )}
-    </div>
+    </span>
   );
 };

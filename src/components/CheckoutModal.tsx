@@ -64,7 +64,7 @@ export const CheckoutModal: React.FC = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={() => setIsCheckoutOpen(false)}
-          className="fixed inset-0 bg-black/85 backdrop-blur-md"
+          className="fixed inset-0 bg-black/35 backdrop-blur-sm"
         />
 
         {/* Modal Box */}
@@ -72,19 +72,19 @@ export const CheckoutModal: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
-          className="relative w-full max-w-lg glass-panel-elevated rounded-2xl sm:rounded-3xl border border-white/20 p-4 sm:p-6 z-10 max-h-[92vh] flex flex-col shadow-2xl"
+          className="relative w-full max-w-lg bg-white card-raised rounded-2xl sm:rounded-3xl border border-line p-4 sm:p-6 z-10 max-h-[92vh] flex flex-col shadow-2xl"
         >
           {/* Header */}
-          <div className="flex items-center justify-between pb-2.5 sm:pb-3 border-b border-white/10">
+          <div className="flex items-center justify-between pb-2.5 sm:pb-3 border-b border-line">
             <div>
-              <span className="text-[9px] sm:text-[10px] tracking-[0.2em] text-[#8DBBDA] uppercase font-bold">
+              <span className="text-[9px] sm:text-[10px] tracking-[0.2em] text-sky-deep uppercase font-bold">
                 Seat Delivery
               </span>
-              <h3 className="text-lg sm:text-xl font-serif font-bold text-white">Express Checkout</h3>
+              <h3 className="text-lg sm:text-xl font-serif font-bold text-ink">Express Checkout</h3>
             </div>
             <button
               onClick={() => setIsCheckoutOpen(false)}
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/60 hover:text-white transition-colors"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#F5F5F5] hover:bg-black/5 flex items-center justify-center text-muted hover:text-ink transition-colors"
               aria-label="Close checkout"
             >
               <X className="w-4 h-4" />
@@ -93,16 +93,16 @@ export const CheckoutModal: React.FC = () => {
 
           <form onSubmit={handlePay} className="overflow-y-auto no-scrollbar py-3 sm:py-4 space-y-3.5 sm:space-y-4 flex-1">
             {/* Seat Confirmation Box */}
-            <div className="p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl bg-white/5 border border-white/15 flex items-center justify-between gap-2.5 sm:gap-3">
+            <div className="p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl bg-[#F5F5F5] border border-line flex items-center justify-between gap-2.5 sm:gap-3">
               <div className="flex items-center gap-2.5 sm:gap-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-[#D9F20A]/15 border border-[#D9F20A]/30 flex items-center justify-center text-[#D9F20A] shrink-0">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-lime/30 border border-lime-deep/20 flex items-center justify-center text-lime-deep shrink-0">
                   <Armchair className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="text-[9px] text-[#8DBBDA] uppercase font-bold tracking-wider block">
+                  <span className="text-[9px] text-sky-deep uppercase font-bold tracking-wider block">
                     Confirmed Seat
                   </span>
-                  <span className="text-xs sm:text-base font-bold text-white">
+                  <span className="text-xs sm:text-base font-bold text-ink">
                     {screen} · Seat {seat}
                   </span>
                 </div>
@@ -111,7 +111,7 @@ export const CheckoutModal: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsSeatModalOpen(true)}
-                className="text-xs text-[#8DBBDA] hover:text-[#D9F20A] underline px-1.5 py-0.5"
+                className="text-xs text-sky-deep hover:text-ink underline px-1.5 py-0.5"
               >
                 Change
               </button>
@@ -119,7 +119,7 @@ export const CheckoutModal: React.FC = () => {
 
             {/* Guest Details */}
             <div className="space-y-2">
-              <label className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white/70 block">
+              <label className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-ink-soft block">
                 Guest Information
               </label>
 
@@ -130,7 +130,7 @@ export const CheckoutModal: React.FC = () => {
                   placeholder="Your Name (for order ticket)"
                   value={customerName}
                   onChange={(e) => setCustomerName(e.target.value)}
-                  className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-white/5 border border-white/15 text-white text-xs sm:text-sm focus:outline-none focus:border-[#D9F20A] transition-all min-h-[38px] sm:min-h-[44px]"
+                  className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-[#F5F5F5] border border-line text-ink text-xs sm:text-sm focus:outline-none focus:border-ink/40 transition-all min-h-[38px] sm:min-h-[44px]"
                 />
               </div>
 
@@ -141,19 +141,19 @@ export const CheckoutModal: React.FC = () => {
                   placeholder="Mobile Number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="flex-1 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-white/5 border border-white/15 text-white text-xs sm:text-sm focus:outline-none focus:border-[#D9F20A] transition-all min-h-[38px] sm:min-h-[44px]"
+                  className="flex-1 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-xl bg-[#F5F5F5] border border-line text-ink text-xs sm:text-sm focus:outline-none focus:border-ink/40 transition-all min-h-[38px] sm:min-h-[44px]"
                 />
                 {!otpVerified ? (
                   <button
                     type="button"
                     onClick={handleSendOtp}
-                    className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-[11px] sm:text-xs font-semibold text-white whitespace-nowrap min-h-[38px] sm:min-h-[44px]"
+                    className="px-3 py-1.5 rounded-xl bg-[#F1F1F3] hover:bg-black/10 text-[11px] sm:text-xs font-semibold text-ink whitespace-nowrap min-h-[38px] sm:min-h-[44px]"
                   >
                     {otpSent ? 'Sending...' : 'Verify OTP'}
                   </button>
                 ) : (
-                  <div className="px-2.5 py-1.5 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-[11px] sm:text-xs font-bold flex items-center gap-1 whitespace-nowrap min-h-[38px] sm:min-h-[44px]">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                  <div className="px-2.5 py-1.5 rounded-xl bg-emerald-50 border border-emerald-500/40 text-emerald-700 text-[11px] sm:text-xs font-bold flex items-center gap-1 whitespace-nowrap min-h-[38px] sm:min-h-[44px]">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                     <span>Verified</span>
                   </div>
                 )}
@@ -162,7 +162,7 @@ export const CheckoutModal: React.FC = () => {
 
             {/* Delivery Timing Preference */}
             <div>
-              <label className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white/70 mb-1.5 block">
+              <label className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-ink-soft mb-1.5 block">
                 Delivery Timing
               </label>
               <div className="grid grid-cols-2 gap-2">
@@ -171,15 +171,15 @@ export const CheckoutModal: React.FC = () => {
                   onClick={() => setDeliveryPreference('now')}
                   className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border text-left transition-all min-h-[42px] sm:min-h-[48px] ${
                     deliveryPreference === 'now'
-                      ? 'bg-white/10 border-[#D9F20A] glow-lime-inner'
-                      : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10'
+                      ? 'bg-lime-soft border-lime-strong text-ink'
+                      : 'bg-[#F5F5F5] border-line text-ink-soft hover:bg-black/5'
                   }`}
                 >
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-white">
-                    <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#D9F20A]" />
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-ink">
+                    <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-lime-deep" />
                     <span>Deliver ASAP</span>
                   </div>
-                  <span className="text-[10px] sm:text-[11px] text-white/60 block mt-0.5">
+                  <span className="text-[10px] sm:text-[11px] text-muted block mt-0.5">
                     ~12-15 mins during show
                   </span>
                 </button>
@@ -189,15 +189,15 @@ export const CheckoutModal: React.FC = () => {
                   onClick={() => setDeliveryPreference('interval')}
                   className={`p-2.5 sm:p-3 rounded-xl sm:rounded-2xl border text-left transition-all min-h-[42px] sm:min-h-[48px] ${
                     deliveryPreference === 'interval'
-                      ? 'bg-white/10 border-[#D9F20A] glow-lime-inner'
-                      : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10'
+                      ? 'bg-lime-soft border-lime-strong text-ink'
+                      : 'bg-[#F5F5F5] border-line text-ink-soft hover:bg-black/5'
                   }`}
                 >
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-white">
-                    <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#8DBBDA]" />
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-ink">
+                    <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-sky-deep" />
                     <span>At Interval</span>
                   </div>
-                  <span className="text-[10px] sm:text-[11px] text-white/60 block mt-0.5">
+                  <span className="text-[10px] sm:text-[11px] text-muted block mt-0.5">
                     Hot during theatre break
                   </span>
                 </button>
@@ -206,7 +206,7 @@ export const CheckoutModal: React.FC = () => {
 
             {/* Payment Method Selector */}
             <div>
-              <label className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white/70 mb-1.5 block">
+              <label className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-ink-soft mb-1.5 block">
                 Payment Method (Mock Gateway)
               </label>
 
@@ -216,11 +216,11 @@ export const CheckoutModal: React.FC = () => {
                   onClick={() => setPaymentMethod('card')}
                   className={`p-2 sm:p-2.5 rounded-xl border flex flex-col items-center gap-1 transition-all min-h-[38px] sm:min-h-[44px] ${
                     paymentMethod === 'card'
-                      ? 'bg-white/15 border-[#D9F20A] text-white shadow-sm'
-                      : 'bg-white/5 border-white/10 text-white/60 hover:text-white'
+                      ? 'bg-lime-soft border-lime-strong text-ink'
+                      : 'bg-[#F5F5F5] border-line text-muted hover:text-ink'
                   }`}
                 >
-                  <CreditCard className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#D9F20A]" />
+                  <CreditCard className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-lime-deep" />
                   <span className="text-[11px] sm:text-xs font-semibold">Card</span>
                 </button>
 
@@ -229,11 +229,11 @@ export const CheckoutModal: React.FC = () => {
                   onClick={() => setPaymentMethod('upi')}
                   className={`p-2 sm:p-2.5 rounded-xl border flex flex-col items-center gap-1 transition-all min-h-[38px] sm:min-h-[44px] ${
                     paymentMethod === 'upi'
-                      ? 'bg-white/15 border-[#D9F20A] text-white shadow-sm'
-                      : 'bg-white/5 border-white/10 text-white/60 hover:text-white'
+                      ? 'bg-lime-soft border-lime-strong text-ink'
+                      : 'bg-[#F5F5F5] border-line text-muted hover:text-ink'
                   }`}
                 >
-                  <Smartphone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#8DBBDA]" />
+                  <Smartphone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-deep" />
                   <span className="text-[11px] sm:text-xs font-semibold">UPI / QR</span>
                 </button>
 
@@ -242,28 +242,28 @@ export const CheckoutModal: React.FC = () => {
                   onClick={() => setPaymentMethod('wallet')}
                   className={`p-2 sm:p-2.5 rounded-xl border flex flex-col items-center gap-1 transition-all min-h-[38px] sm:min-h-[44px] ${
                     paymentMethod === 'wallet'
-                      ? 'bg-white/15 border-[#D9F20A] text-white shadow-sm'
-                      : 'bg-white/5 border-white/10 text-white/60 hover:text-white'
+                      ? 'bg-lime-soft border-lime-strong text-ink'
+                      : 'bg-[#F5F5F5] border-line text-muted hover:text-ink'
                   }`}
                 >
-                  <Wallet className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />
+                  <Wallet className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" />
                   <span className="text-[11px] sm:text-xs font-semibold">Apple Pay</span>
                 </button>
               </div>
 
               {/* Dynamic Payment Details Fields */}
               {paymentMethod === 'card' && (
-                <div className="p-3 rounded-xl sm:rounded-2xl bg-black/40 border border-white/10 space-y-1.5">
-                  <div className="flex items-center justify-between text-[11px] text-white/50">
+                <div className="p-3 rounded-xl sm:rounded-2xl bg-[#F5F5F5] border border-line space-y-1.5">
+                  <div className="flex items-center justify-between text-[11px] text-muted">
                     <span>Card Details</span>
-                    <span className="text-[10px] text-[#8DBBDA]">Stripe/Razorpay Ready</span>
+                    <span className="text-[10px] text-sky-deep">Stripe/Razorpay Ready</span>
                   </div>
                   <input
                     type="text"
                     value={cardNumber}
                     onChange={(e) => setCardNumber(e.target.value)}
                     placeholder="Card Number"
-                    className="w-full px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/15 text-white text-xs font-mono"
+                    className="w-full px-2.5 py-1.5 rounded-lg bg-[#F5F5F5] border border-line text-ink text-xs font-mono"
                   />
                   <div className="grid grid-cols-2 gap-1.5">
                     <input
@@ -271,42 +271,42 @@ export const CheckoutModal: React.FC = () => {
                       value={cardExp}
                       onChange={(e) => setCardExp(e.target.value)}
                       placeholder="MM/YY"
-                      className="px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/15 text-white text-xs font-mono"
+                      className="px-2.5 py-1.5 rounded-lg bg-[#F5F5F5] border border-line text-ink text-xs font-mono"
                     />
                     <input
                       type="password"
                       value={cardCvv}
                       onChange={(e) => setCardCvv(e.target.value)}
                       placeholder="CVV"
-                      className="px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/15 text-white text-xs font-mono"
+                      className="px-2.5 py-1.5 rounded-lg bg-[#F5F5F5] border border-line text-ink text-xs font-mono"
                     />
                   </div>
                 </div>
               )}
 
               {paymentMethod === 'upi' && (
-                <div className="p-3 rounded-xl sm:rounded-2xl bg-black/40 border border-white/10 space-y-1.5">
-                  <span className="text-[11px] text-white/60 block">Enter UPI ID / VPA</span>
+                <div className="p-3 rounded-xl sm:rounded-2xl bg-[#F5F5F5] border border-line space-y-1.5">
+                  <span className="text-[11px] text-muted block">Enter UPI ID / VPA</span>
                   <input
                     type="text"
                     value={upiId}
                     onChange={(e) => setUpiId(e.target.value)}
                     placeholder="e.g. mobile@okaxis"
-                    className="w-full px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/15 text-white text-xs font-mono"
+                    className="w-full px-2.5 py-1.5 rounded-lg bg-[#F5F5F5] border border-line text-ink text-xs font-mono"
                   />
-                  <span className="text-[10px] text-white/40 block">
+                  <span className="text-[10px] text-faint block">
                     Supported: GPay, PhonePe, Paytm, BHIM, Cred
                   </span>
                 </div>
               )}
 
               {paymentMethod === 'wallet' && (
-                <div className="p-3 rounded-xl sm:rounded-2xl bg-black/40 border border-white/10 text-center">
-                  <ShieldCheck className="w-5 h-5 text-emerald-400 mx-auto mb-1" />
-                  <span className="text-xs text-white font-medium block">
+                <div className="p-3 rounded-xl sm:rounded-2xl bg-[#F5F5F5] border border-line text-center">
+                  <ShieldCheck className="w-5 h-5 text-emerald-600 mx-auto mb-1" />
+                  <span className="text-xs text-ink font-medium block">
                     Cinema Dining Pass / Apple Pay
                   </span>
-                  <span className="text-[10px] text-white/50 block mt-0.5">
+                  <span className="text-[10px] text-muted block mt-0.5">
                     Biometric authorization ready
                   </span>
                 </div>
@@ -315,7 +315,7 @@ export const CheckoutModal: React.FC = () => {
 
             {/* Special Instructions for Usher */}
             <div>
-              <label htmlFor="usher-instructions" className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white/70 mb-1 block">
+              <label htmlFor="usher-instructions" className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-ink-soft mb-1 block">
                 Usher Delivery Notes (Optional)
               </label>
               <input
@@ -324,15 +324,15 @@ export const CheckoutModal: React.FC = () => {
                 placeholder="e.g. Please whisper, quiet entry, extra napkins"
                 value={specialInstructions}
                 onChange={(e) => setSpecialInstructions(e.target.value)}
-                className="w-full px-3 py-2 sm:px-3.5 sm:py-2 rounded-xl bg-white/5 border border-white/15 text-white text-xs placeholder:text-white/40 focus:outline-none focus:border-[#D9F20A] min-h-[38px] sm:min-h-[42px]"
+                className="w-full px-3 py-2 sm:px-3.5 sm:py-2 rounded-xl bg-[#F5F5F5] border border-line text-ink text-xs placeholder:text-faint focus:outline-none focus:border-ink/40 min-h-[38px] sm:min-h-[42px]"
               />
             </div>
 
             {/* Order total & CTA */}
-            <div className="pt-2.5 border-t border-white/10">
+            <div className="pt-2.5 border-t border-line">
               <div className="flex items-center justify-between mb-2 text-xs sm:text-sm">
-                <span className="text-white/70">Total Due</span>
-                <span className="text-lg sm:text-xl font-extrabold text-[#D9F20A] tabular-nums">
+                <span className="text-ink-soft">Total Due</span>
+                <span className="text-lg sm:text-xl font-extrabold text-lime-deep tabular-nums">
                   {formatINR(grandTotal)}
                 </span>
               </div>
